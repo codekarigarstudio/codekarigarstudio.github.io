@@ -1,0 +1,17 @@
+name: Rename APK for store URL
+on:
+  workflow_dispatch:
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rename APK
+        run: |
+          git config user.name "codekarigarstudio"
+          git config user.email "codekarigarstudio@users.noreply.github.com"
+          git mv downloads/bolt-downloader-v3.1.0-ads.apk downloads/bolt-downloader-v3.1.0.apk
+          git commit -m "Rename APK to bolt-downloader-v3.1.0.apk for Aptoide URL"
+          git push
