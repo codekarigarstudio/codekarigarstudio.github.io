@@ -272,3 +272,13 @@ details p { color: var(--muted); margin-top: 10px; font-size: 0.95rem; }
   .section { padding: 60px 0; }
   .hero { padding: 70px 0 54px; }
 }
+
+/* Graphic design gallery */
+.services-grid { grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); }
+.design-grid { columns: 2; column-gap: 18px; }
+.design-item { break-inside: avoid; margin: 0 0 18px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.design-item img { display: block; width: 100%; height: auto; }
+.design-item figcaption { padding: 10px 14px; font-size: 0.9rem; font-weight: 600; color: var(--navy-soft); }
+.design-cta { text-align: center; margin-top: 14px; }
+@media (min-width: 760px) { .design-grid { columns: 3; } }
+@media (min-width: 1080px) { .design-grid { columns: 4; } }
