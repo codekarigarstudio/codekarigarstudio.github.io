@@ -282,3 +282,4 @@ details p { color: var(--muted); margin-top: 10px; font-size: 0.95rem; }
 .design-cta { text-align: center; margin-top: 14px; }
 @media (min-width: 760px) { .design-grid { columns: 3; } }
 @media (min-width: 1080px) { .design-grid { columns: 4; } }
+.design-price-note { text-align: center; font-size: 1.05rem; margin: 8px 0 6px; color: var(--navy-soft); }
