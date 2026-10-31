@@ -15,6 +15,25 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Design gallery lightbox */
+    .design-item img { cursor: zoom-in; }
+    .design-hint { text-align: center; color: var(--navy-soft); font-size: 0.95rem; margin: 2px 0 14px; }
+    .lightbox { position: fixed; inset: 0; z-index: 999; background: rgba(15,23,42,0.94); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; }
+    .lightbox[hidden] { display: none; }
+    .lb-stage { max-width: min(1100px, 94vw); max-height: 76vh; overflow: auto; display: flex; }
+    .lb-stage img { max-width: 100%; max-height: 76vh; margin: auto; transition: transform .15s ease; }
+    .lb-caption { color: #fff; font-weight: 600; margin: 12px 0 4px; text-align: center; }
+    .lb-count { color: #FBBF24; font-size: 0.9rem; margin: 0 0 8px; }
+    .lb-close, .lb-prev, .lb-next, .lb-tools button { background: #FBBF24; color: #0F172A; border: 0; border-radius: 999px; font-weight: 700; cursor: pointer; }
+    .lb-close { position: absolute; top: 14px; right: 16px; width: 42px; height: 42px; font-size: 26px; line-height: 1; }
+    .lb-prev, .lb-next { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; font-size: 30px; line-height: 1; }
+    .lb-prev { left: 12px; }
+    .lb-next { right: 12px; }
+    .lb-tools { display: flex; gap: 8px; }
+    .lb-tools button { padding: 8px 16px; font-size: 1rem; }
+    body.lb-open { overflow: hidden; }
+  </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WYMWQWRE3F"></script>
 <script>
@@ -291,6 +310,7 @@
     <p class="kicker">Graphic Design</p>
     <h2>Design work since <span class="accent">2020</span></h2>
     <p class="section-sub">Posters, banners, social-media posts, infographics and Urdu calligraphy — 5+ years of design work for institutes, businesses and communities. Every app client also gets matching graphics: logo, store listing art and launch posters.</p>
+    <p class="design-hint">Click any design to open it full-size — tap the image or use + / − to zoom, and use the arrows to browse all 14 designs.</p>
     <div class="design-grid">
       <figure class="design-item">
         <img src="assets/img/design/design-admission-banner.jpg" alt="Admission campaign banner designed for an education institute" loading="lazy">
@@ -501,5 +521,75 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+
+<!-- Design gallery lightbox -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" id="lb-close" aria-label="Close">×</button>
+  <button class="lb-prev" id="lb-prev" aria-label="Previous design">‹</button>
+  <button class="lb-next" id="lb-next" aria-label="Next design">›</button>
+  <div class="lb-stage"><img id="lb-img" src="" alt=""></div>
+  <p class="lb-caption" id="lb-caption"></p>
+  <p class="lb-count" id="lb-count"></p>
+  <div class="lb-tools">
+    <button id="lb-zoom-in" aria-label="Zoom in">+</button>
+    <button id="lb-zoom-out" aria-label="Zoom out">−</button>
+    <button id="lb-zoom-reset">Reset</button>
+  </div>
+</div>
+<script>
+(function () {
+  "use strict";
+  var items = Array.prototype.slice.call(document.querySelectorAll(".design-item"));
+  if (!items.length) return;
+  var lb = document.getElementById("lightbox");
+  var img = document.getElementById("lb-img");
+  var cap = document.getElementById("lb-caption");
+  var count = document.getElementById("lb-count");
+  var idx = 0, scale = 1;
+  function setScale(s) {
+    scale = Math.min(3, Math.max(1, s));
+    img.style.transform = "scale(" + scale + ")";
+    img.style.cursor = scale > 1 ? "zoom-out" : "zoom-in";
+  }
+  function show(i) {
+    idx = (i + items.length) % items.length;
+    var im = items[idx].querySelector("img");
+    var fc = items[idx].querySelector("figcaption");
+    img.src = im.getAttribute("src");
+    img.alt = im.alt || "";
+    cap.textContent = fc ? fc.textContent : "";
+    count.textContent = (idx + 1) + " / " + items.length;
+    setScale(1);
+  }
+  function open(i) { show(i); lb.hidden = false; document.body.classList.add("lb-open"); }
+  function close() { lb.hidden = true; document.body.classList.remove("lb-open"); }
+  items.forEach(function (fig, i) {
+    var im = fig.querySelector("img");
+    im.setAttribute("tabindex", "0");
+    im.setAttribute("role", "button");
+    im.setAttribute("aria-label", "Open design full size: " + (im.alt || ""));
+    im.addEventListener("click", function () { open(i); });
+    im.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i); }
+    });
+  });
+  document.getElementById("lb-close").addEventListener("click", close);
+  document.getElementById("lb-prev").addEventListener("click", function () { show(idx - 1); });
+  document.getElementById("lb-next").addEventListener("click", function () { show(idx + 1); });
+  document.getElementById("lb-zoom-in").addEventListener("click", function () { setScale(scale + 0.5); });
+  document.getElementById("lb-zoom-out").addEventListener("click", function () { setScale(scale - 0.5); });
+  document.getElementById("lb-zoom-reset").addEventListener("click", function () { setScale(1); });
+  img.addEventListener("click", function () { setScale(scale > 1 ? 1 : 2); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+  document.addEventListener("keydown", function (e) {
+    if (lb.hidden) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(idx - 1);
+    if (e.key === "ArrowRight") show(idx + 1);
+    if (e.key === "+") setScale(scale + 0.5);
+    if (e.key === "-") setScale(scale - 0.5);
+  });
+})();
+</script>
 </body>
 </html>
