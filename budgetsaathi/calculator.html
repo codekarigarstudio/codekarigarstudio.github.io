@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monthly Budget Calculator — 50/30/20 Rule | BudgetSaathi</title>
+<meta name="description" content="Free monthly budget calculator: enter income and expenses, see your savings rate and compare with the 50/30/20 rule instantly.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Monthly Budget Calculator — 50/30/20 Rule | BudgetSaathi">
+<meta property="og:description" content="Free monthly budget calculator with 50/30/20 comparison and smart saving tips.">
+<link rel="stylesheet" href="css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6062741019970912"
+     crossorigin="anonymous"></script>
+</head>
+<body data-page="calculator">
+<!-- ADSENSE: header leaderboard placeholder (970x90 / responsive) — paste ad code here -->
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="brand" href="index.html" data-i18n="siteName">BudgetSaathi</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" data-nav="home" data-i18n="nav.home">Home</a>
+      <a href="calculator.html" data-nav="calculator" data-i18n="nav.calc">Budget Calculator</a>
+      <a href="planner.html" data-nav="planner" data-i18n="nav.planner">Budget Sheet</a>
+      <a href="about.html" data-nav="about" data-i18n="nav.about">About</a>
+    </nav>
+    <div class="controls">
+      <select id="currency" aria-label="Currency"></select>
+      <button id="langToggle" type="button">اردو</button>
+    </div>
+    <div id="customCurBox">
+      <span data-i18n="cur.customTitle">Custom currency</span>
+      <input id="curCodeInput" maxlength="3" data-i18n-ph="cur.code" placeholder="Code (3 letters, e.g. TRY)">
+      <input id="curSymbolInput" maxlength="6" data-i18n-ph="cur.symbol" placeholder="Symbol">
+      <button id="curSaveBtn" type="button" data-i18n="cur.save">Save</button>
+      <span id="curWarn" style="display:none"></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap section">
+  <h1 data-i18n="calc.title">Monthly Budget Calculator</h1>
+  <p data-i18n="calc.intro">Enter your income and expenses — results update instantly. Switch currency anytime.</p>
+
+  <div class="calc-grid">
+    <div class="panel">
+      <h2 data-i18n="calc.expensesTitle">Monthly expenses</h2>
+      <div class="field">
+        <label for="in-income" data-i18n="calc.income">Monthly income</label>
+        <input id="in-income" type="number" min="0" inputmode="decimal" placeholder="5000">
+      </div>
+      <div class="field">
+        <label for="in-rent" data-i18n="calc.rent">Rent / mortgage</label>
+        <input id="in-rent" type="number" min="0" inputmode="decimal" placeholder="1500">
+      </div>
+      <div class="field">
+        <label for="in-groceries" data-i18n="calc.groceries">Groceries</label>
+        <input id="in-groceries" type="number" min="0" inputmode="decimal" placeholder="600">
+      </div>
+      <div class="field">
+        <label for="in-utilities" data-i18n="calc.utilities">Utilities (power, gas, water, phone)</label>
+        <input id="in-utilities" type="number" min="0" inputmode="decimal" placeholder="250">
+      </div>
+      <div class="field">
+        <label for="in-transport" data-i18n="calc.transport">Transport (fuel / fares)</label>
+        <input id="in-transport" type="number" min="0" inputmode="decimal" placeholder="300">
+      </div>
+      <div class="field">
+        <label for="in-healthEdu" data-i18n="calc.healthEdu">Health &amp; education</label>
+        <input id="in-healthEdu" type="number" min="0" inputmode="decimal" placeholder="200">
+      </div>
+      <div class="field">
+        <label for="in-other" data-i18n="calc.other">Other expenses</label>
+        <input id="in-other" type="number" min="0" inputmode="decimal" placeholder="400">
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 data-i18n="calc.resultsTitle">Your result</h2>
+      <div class="result-row"><span data-i18n="calc.totalExp">Total expenses</span><strong id="out-total">—</strong></div>
+      <div class="result-row"><span data-i18n="calc.savings">Savings</span><strong id="out-savings">—</strong></div>
+      <div class="result-row total"><span data-i18n="calc.savingsRate">Savings rate</span><strong id="out-rate">—</strong></div>
+
+      <h2 style="margin-top:20px" data-i18n="calc.compareTitle">Compare with the 50/30/20 rule</h2>
+      <div class="bar-legend">
+        <span><i style="background:var(--green)"></i><span data-i18n="calc.actual">Yours</span></span>
+        <span><i style="background:var(--gold)"></i><span data-i18n="calc.ideal">Ideal</span></span>
+      </div>
+      <div class="bars">
+        <div class="bar-row">
+          <span class="blabel" data-i18n="calc.needs">Needs</span>
+          <div>
+            <div class="bar"><div class="fill" id="fill-needs"></div><div class="marker" id="bar-needs"></div></div>
+            <div class="bar-pct" id="pct-needs"></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="blabel" data-i18n="calc.wants">Wants</span>
+          <div>
+            <div class="bar"><div class="fill" id="fill-wants"></div><div class="marker" id="bar-wants"></div></div>
+            <div class="bar-pct" id="pct-wants"></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="blabel" data-i18n="calc.savings">Savings</span>
+          <div>
+            <div class="bar"><div class="fill" id="fill-sav"></div><div class="marker" id="bar-sav"></div></div>
+            <div class="bar-pct" id="pct-sav"></div>
+          </div>
+        </div>
+      </div>
+
+      <h2 style="margin-top:20px" data-i18n="calc.tipsTitle">Tips for you</h2>
+      <ul class="tips" id="tipsList"></ul>
+      <p class="disclaimer" data-i18n="calc.disclaimer">This is an estimate for education, not professional financial advice.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p data-i18n="footer.note">BudgetSaathi — financial guidance in plain language. Content is for education only, not financial advice.</p>
+    <p data-i18n="footer.rights">© 2026 BudgetSaathi. All rights reserved.</p>
+  </div>
+</footer>
+<!-- ADSENSE: footer ad unit placeholder (responsive) — paste ad code here -->
+
+<script src="js/strings.js"></script>
+<script src="js/posts.js"></script>
+<script src="js/app.js"></script>
+<script src="js/calculator.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Printable Monthly Budget Sheet (PDF-style) | BudgetSaathi</title>
+<meta name="description" content="Free printable monthly budget sheet — one clean A4 page to track income, expenses and savings by hand.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Printable Monthly Budget Sheet | BudgetSaathi">
+<meta property="og:description" content="Free printable monthly budget sheet — track income, expenses and savings on one A4 page.">
+<link rel="stylesheet" href="css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6062741019970912"
+     crossorigin="anonymous"></script>
+</head>
+<body data-page="planner">
+<!-- ADSENSE: header leaderboard placeholder (970x90 / responsive) — paste ad code here -->
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="brand" href="index.html" data-i18n="siteName">BudgetSaathi</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" data-nav="home" data-i18n="nav.home">Home</a>
+      <a href="calculator.html" data-nav="calculator" data-i18n="nav.calc">Budget Calculator</a>
+      <a href="planner.html" data-nav="planner" data-i18n="nav.planner">Budget Sheet</a>
+      <a href="about.html" data-nav="about" data-i18n="nav.about">About</a>
+    </nav>
+    <div class="controls">
+      <select id="currency" aria-label="Currency"></select>
+      <button id="langToggle" type="button">اردو</button>
+    </div>
+    <div id="customCurBox">
+      <span data-i18n="cur.customTitle">Custom currency</span>
+      <input id="curCodeInput" maxlength="3" data-i18n-ph="cur.code" placeholder="Code (3 letters, e.g. TRY)">
+      <input id="curSymbolInput" maxlength="6" data-i18n-ph="cur.symbol" placeholder="Symbol">
+      <button id="curSaveBtn" type="button" data-i18n="cur.save">Save</button>
+      <span id="curWarn" style="display:none"></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap section">
+  <h1 data-i18n="planner.title">Monthly Budget Sheet</h1>
+  <p data-i18n="planner.intro">Print this sheet, stick it on the fridge, and fill it in by hand every month.</p>
+  <div class="toolbar">
+    <button type="button" class="btn green" onclick="window.print()" data-i18n="planner.print">Print</button>
+  </div>
+
+  <div class="sheet">
+    <h2><span data-i18n="siteName">BudgetSaathi</span> — <span data-i18n="planner.title">Monthly Budget Sheet</span></h2>
+    <p><strong data-i18n="planner.month">Month</strong>: ____________________</p>
+    <table>
+      <tr><th data-i18n="planner.incomeTitle">Income</th><th data-i18n="planner.colBudgeted">Budgeted</th><th data-i18n="planner.colActual">Actual</th></tr>
+      <tr><td class="lbl">Salary / wages<span class="ur">تنخواہ</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr><td class="lbl">Other income<span class="ur">دیگر آمدنی</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr class="total"><td class="lbl">Total income<span class="ur">کل آمدنی</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr><th data-i18n="planner.expenseTitle">Expenses</th><th data-i18n="planner.colBudgeted">Budgeted</th><th data-i18n="planner.colActual">Actual</th></tr>
+      <tr><td class="lbl">Rent / mortgage<span class="ur">کرایہ</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr><td class="lbl">Groceries<span class="ur">گروسری / راشن</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr><td class="lbl">Utilities<span class="ur">بجلی، گیس، پانی</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr><td class="lbl">Transport<span class="ur">آمدورفت</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr><td class="lbl">Health<span class="ur">صحت</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr><td class="lbl">Education<span class="ur">تعلیم</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr><td class="lbl">Savings (set aside first)<span class="ur">بچت (پہلے الگ کریں)</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr><td class="lbl">Other<span class="ur">دیگر</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr class="total"><td class="lbl">Total expenses<span class="ur">کل اخراجات</span></td><td class="amt"></td><td class="amt"></td></tr>
+      <tr class="total"><td class="lbl">Balance left<span class="ur">باقی رقم</span></td><td class="amt"></td><td class="amt"></td></tr>
+    </table>
+    <p data-i18n="planner.note">Always set savings aside first — savings is what you keep, not what is left over.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p data-i18n="footer.note">BudgetSaathi — financial guidance in plain language. Content is for education only, not financial advice.</p>
+    <p data-i18n="footer.rights">© 2026 BudgetSaathi. All rights reserved.</p>
+  </div>
+</footer>
+<!-- ADSENSE: footer ad unit placeholder (responsive) — paste ad code here -->
+
+<script src="js/strings.js"></script>
+<script src="js/posts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

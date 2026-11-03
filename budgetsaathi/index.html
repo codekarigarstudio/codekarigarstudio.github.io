@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BudgetSaathi — Monthly Budget Planner & Money Tips</title>
+<meta name="description" content="Free monthly budget planner, 50/30/20 rule calculator and practical money-saving tips for households. Build a budget in minutes.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BudgetSaathi — Monthly Budget Planner & Money Tips">
+<meta property="og:description" content="Free monthly budget planner, 50/30/20 rule calculator and practical money-saving tips.">
+<link rel="stylesheet" href="css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6062741019970912"
+     crossorigin="anonymous"></script>
+</head>
+<body data-page="home">
+<!-- ADSENSE: header leaderboard placeholder (970x90 / responsive) — paste ad code here -->
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="brand" href="index.html" data-i18n="siteName">BudgetSaathi</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" data-nav="home" data-i18n="nav.home">Home</a>
+      <a href="calculator.html" data-nav="calculator" data-i18n="nav.calc">Budget Calculator</a>
+      <a href="planner.html" data-nav="planner" data-i18n="nav.planner">Budget Sheet</a>
+      <a href="about.html" data-nav="about" data-i18n="nav.about">About</a>
+    </nav>
+    <div class="controls">
+      <select id="currency" aria-label="Currency"></select>
+      <button id="langToggle" type="button">اردو</button>
+    </div>
+    <div id="customCurBox">
+      <span data-i18n="cur.customTitle">Custom currency</span>
+      <input id="curCodeInput" maxlength="3" data-i18n-ph="cur.code" placeholder="Code (3 letters, e.g. TRY)">
+      <input id="curSymbolInput" maxlength="6" data-i18n-ph="cur.symbol" placeholder="Symbol">
+      <button id="curSaveBtn" type="button" data-i18n="cur.save">Save</button>
+      <span id="curWarn" style="display:none"></span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1 data-i18n="hero.title">Understand your money, in simple words</h1>
+      <p data-i18n="hero.sub">BudgetSaathi helps households build a monthly budget, understand spending and grow savings — completely free.</p>
+      <a class="btn primary" href="calculator.html" data-i18n="hero.cta1">Try the budget calculator</a>
+      <a class="btn ghost" href="#articles" data-i18n="hero.cta2">Read articles</a>
+    </div>
+  </section>
+
+  <section class="section wrap" id="articles">
+    <h2 data-i18n="featured.title">Featured articles</h2>
+    <div class="cards">
+      <article class="card">
+        <h3 data-i18n="cards.p1t">How to Build a Monthly Budget</h3>
+        <p data-i18n="cards.p1d">A step-by-step guide with US household examples — from listing income to automating savings.</p>
+        <a class="more" href="posts/budget-guide.html"><span data-i18n="featured.readMore">Read more</span> →</a>
+      </article>
+      <article class="card">
+        <h3 data-i18n="cards.p2t">The 50/30/20 Rule, Explained</h3>
+        <p data-i18n="cards.p2d">Needs 50%, wants 30%, savings 20% — with $3,000, $5,000 and $8,000 salary breakdowns.</p>
+        <a class="more" href="posts/50-30-20-rule.html"><span data-i18n="featured.readMore">Read more</span> →</a>
+      </article>
+      <article class="card">
+        <h3 data-i18n="cards.p3t">How to Save Money on Groceries</h3>
+        <p data-i18n="cards.p3d">Store brands, meal planning, cashback apps and 9 more practical tips that actually work.</p>
+        <a class="more" href="posts/save-on-groceries.html"><span data-i18n="featured.readMore">Read more</span> →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section cta-band">
+    <div class="wrap">
+      <h2 data-i18n="cta.title">What is your savings rate?</h2>
+      <p data-i18n="cta.text">Enter your monthly budget in two minutes and see where you stand against the 50/30/20 rule.</p>
+      <a class="btn green" href="calculator.html" data-i18n="cta.button">Open the calculator</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p data-i18n="footer.note">BudgetSaathi — financial guidance in plain language. Content is for education only, not financial advice.</p>
+    <p data-i18n="footer.rights">© 2026 BudgetSaathi. All rights reserved.</p>
+  </div>
+</footer>
+<!-- ADSENSE: footer ad unit placeholder (responsive) — paste ad code here -->
+
+<script src="js/strings.js"></script>
+<script src="js/posts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
