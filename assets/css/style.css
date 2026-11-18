@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('../fonts/plus-jakarta-sans-latin.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --navy: #0F172A;
   --navy-soft: #1E293B;
@@ -109,7 +117,7 @@ h3 { font-size: 1.15rem; font-weight: 700; }
   margin-bottom: 22px;
 }
 .lead { font-size: 1.15rem; color: var(--muted); max-width: 640px; margin: 18px auto 34px; }
-.hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; min-height: 54px; }
 .trust-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 38px; }
 .trust-chips span {
   font-size: 0.82rem; font-weight: 600; color: var(--navy-soft);
