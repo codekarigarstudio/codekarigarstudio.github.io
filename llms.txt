@@ -1,0 +1,35 @@
+# CodeKarigar
+
+> CodeKarigar is a custom software studio in Multan, Pakistan. We build mobile apps, web apps, POS systems and khata (ledger) software for small businesses — in Urdu and English. Starter website from $99, Business App from $499, 50% advance / 50% on delivery.
+
+## Services
+
+- Mobile Apps: Android apps (Kotlin / Jetpack Compose) with Play Store AAB
+- Web Apps: business websites and web tools on GitHub Pages
+- POS Systems: DukanHisab shop management, billing, stock and customer khata
+- Graphic Designing: logos, posters, social posts and thumbnails from $10
+- SEO Audit: manual technical, on-page and content audit — bundle PKR 15,000, audit-only PKR 10,000
+- Video Ads: 30-second product video ad PKR 1,500
+
+## Products
+
+- [Bolt Downloader](https://codekarigarstudio.github.io/bolt-downloader.html): fast, free video downloader for Android
+- [BudgetSaathi](https://codekarigarstudio.github.io/budgetsaathi/): free budget calculator, planner and money guides
+- [DukanHisab](https://codekarigarstudio.github.io/): shop management — billing, stock, khata
+- [School Management System](https://codekarigarstudio.github.io/): fees, attendance, roles for Principal, Teacher and Student/Parent
+- [Hisab Kitab](https://codekarigarstudio.github.io/): offline-first khata app
+
+## BudgetSaathi guides
+
+- [Monthly Budget Guide](https://codekarigarstudio.github.io/budgetsaathi/posts/budget-guide.html): how to plan a monthly budget
+- [The 50-30-20 Rule](https://codekarigarstudio.github.io/budgetsaathi/posts/50-30-20-rule.html): split your income into needs, wants and savings
+- [Save on Groceries](https://codekarigarstudio.github.io/budgetsaathi/posts/save-on-groceries.html): practical ways to cut grocery spending
+
+## Blog
+
+- [CodeKarigar Blog](https://codekarigarstudio.blogspot.com/): practical guides for small shop owners — stock, staff, pricing, customers, going digital. New article every Monday and Thursday.
+
+## Contact
+
+- Website: https://codekarigarstudio.github.io/
+- WhatsApp: https://is.gd/msU1k8
