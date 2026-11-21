@@ -37,6 +37,30 @@
     .lb-tools { display: flex; gap: 8px; }
     .lb-tools button { padding: 8px 16px; font-size: 1rem; }
     body.lb-open { overflow: hidden; }
+    /* Design gallery carousel — Bari Slide (Style C, selected 2026-11-21) */
+    .design-carousel { max-width: 900px; margin: 0 auto; }
+    .dc-brand { background: var(--navy); color: #fff; text-align: center; padding: 16px 14px 12px; border-radius: var(--radius) var(--radius) 0 0; }
+    .dc-brand .dc-logo { font-size: 1.6rem; font-weight: 800; letter-spacing: .5px; }
+    .dc-brand .dc-logo span { color: var(--amber-light); }
+    .dc-brand .dc-tag { display: block; color: #CBD5E1; font-size: .9rem; margin-top: 2px; }
+    .dc-stage { position: relative; }
+    .dc-slide { background: var(--bg-soft); border: 1px solid var(--border); border-top: 0; border-radius: 0 0 var(--radius) var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .dc-slide .dc-imgbox { background: var(--navy); display: flex; justify-content: center; }
+    .dc-slide .dc-imgbox img { max-height: 520px; max-width: 100%; width: auto; height: auto; cursor: zoom-in; }
+    .dc-cap { padding: 16px 20px 18px; }
+    .dc-cap h3 { font-size: 1.15rem; }
+    .dc-cap .dc-dim { color: var(--navy-soft); margin-top: 6px; font-size: .95rem; }
+    .dc-cap .dc-dim b { color: var(--amber-dark); }
+    .dc-cap .dc-type { display: inline-block; margin-top: 10px; font-size: .78rem; font-weight: 700; background: #FEF3C7; color: #92400E; border-radius: 99px; padding: 4px 12px; }
+    .dc-arrow { position: absolute; top: 42%; transform: translateY(-50%); z-index: 5; width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--navy); color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(15,23,42,.3); }
+    .dc-arrow:hover { background: var(--amber-dark); }
+    .dc-prev { left: 8px; } .dc-next { right: 8px; }
+    .dc-dots { display: flex; gap: 7px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+    .dc-dot { width: 9px; height: 9px; border-radius: 50%; border: none; background: #CBD5E1; cursor: pointer; padding: 0; }
+    .dc-dot.active { background: var(--amber-dark); width: 26px; border-radius: 99px; }
+    .dc-count { text-align: center; color: var(--navy-soft); font-size: .9rem; margin-top: 10px; }
+    .dc-fade { animation: dc-fadein .35s ease; }
+    @keyframes dc-fadein { from { opacity: 0; } to { opacity: 1; } }
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WYMWQWRE3F"></script>
@@ -341,7 +365,18 @@
     <p class="kicker">Graphic Design</p>
     <h2>Design work since <span class="accent">2020</span></h2>
     <p class="section-sub">Posters, banners, social-media posts, infographics and Urdu calligraphy — 5+ years of design work for institutes, businesses and communities. Every app client also gets matching graphics: logo, store listing art and launch posters.</p>
-    <p class="design-hint">Click any design to open it full-size — tap the image or use + / − to zoom, and use the arrows to browse all 14 designs.</p>
+    <p class="design-hint">Use the arrows or dots to browse all 14 designs — swipe on your phone, or click a design to open it full-size and zoom.</p>
+    <div class="design-carousel" id="design-carousel">
+      <div class="dc-brand"><span class="dc-logo">Code<span>Karigar</span></span><span class="dc-tag">Design Gallery</span></div>
+      <div class="dc-stage">
+        <button class="dc-arrow dc-prev" id="dc-prev" aria-label="Previous design">&#8249;</button>
+        <div class="dc-slide" id="dc-slide"></div>
+        <button class="dc-arrow dc-next" id="dc-next" aria-label="Next design">&#8250;</button>
+      </div>
+      <div class="dc-dots" id="dc-dots"></div>
+      <p class="dc-count" id="dc-count"></p>
+    </div>
+    <div class="design-data" hidden>
     <div class="design-grid">
       <figure class="design-item">
         <img src="assets/img/design/design-admission-banner.jpg" width="1100" height="688" alt="Admission campaign banner designed for an education institute" loading="lazy">
@@ -399,6 +434,7 @@
         <img src="assets/img/design/design-quaid-concept.jpg" width="1100" height="1100" alt="Quaid-e-Azam Day concept poster — cap shadow shaped as the map of Pakistan" loading="lazy">
         <figcaption>Quaid-e-Azam Day — concept poster</figcaption>
       </figure>
+    </div>
     </div>
     <p class="design-price-note">Every design starts at just <strong>$10</strong> — fixed quote before we start, no surprises.</p>
     <p class="design-cta"><a class="btn btn-primary btn-lg" href="https://is.gd/msU1k8" target="_blank" rel="noopener">Order a design on WhatsApp</a></p>
@@ -570,56 +606,109 @@
 <script>
 (function () {
   "use strict";
-  var items = Array.prototype.slice.call(document.querySelectorAll(".design-item"));
-  if (!items.length) return;
+  /* Design data: the 14 figures below are kept (hidden) as the single source of truth. */
+  var figs = Array.prototype.slice.call(document.querySelectorAll(".design-item"));
+  if (!figs.length) return;
+  var designs = figs.map(function (fig) {
+    var im = fig.querySelector("img");
+    var fc = fig.querySelector("figcaption");
+    return {
+      src: im.getAttribute("src"),
+      alt: im.alt || "",
+      title: fc ? fc.textContent : "",
+      w: parseInt(im.getAttribute("width"), 10) || 0,
+      h: parseInt(im.getAttribute("height"), 10) || 0
+    };
+  });
+  function shape(w, h) { return w === h ? "Square" : (w > h ? "Landscape" : "Portrait"); }
+  function typeFor(title, w, h) {
+    var t = title.toLowerCase();
+    if (t.indexOf("banner") !== -1) return "Landscape Banner";
+    if (t.indexOf("infographic") !== -1) return "Infographic";
+    if (t.indexOf("calligraphy") !== -1) return "Calligraphy Poster";
+    if (t.indexOf("illustration") !== -1) return "Illustration Poster";
+    if (t.indexOf("social media") !== -1) return "Square Post";
+    return shape(w, h) + " Poster";
+  }
+  /* --- Bari Slide carousel (Style C) --- */
+  var slide = document.getElementById("dc-slide");
+  var dotsBox = document.getElementById("dc-dots");
+  var countEl = document.getElementById("dc-count");
+  var idx = 0;
+  function render() {
+    var d = designs[idx];
+    var type = typeFor(d.title, d.w, d.h);
+    slide.classList.remove("dc-fade"); void slide.offsetWidth; slide.classList.add("dc-fade");
+    slide.innerHTML =
+      '<div class="dc-imgbox"><img id="dc-img" src="' + d.src + '" alt="' + d.alt.replace(/"/g, "&quot;") + '"></div>' +
+      '<div class="dc-cap"><h3>' + d.title + '</h3>' +
+      '<p class="dc-dim"><b>' + d.w + ' \u00d7 ' + d.h + ' px</b> \u00b7 ' + shape(d.w, d.h) + ' \u00b7 ' + type + '</p>' +
+      '<span class="dc-type">' + type + '</span></div>';
+    countEl.textContent = (idx + 1) + " / " + designs.length;
+    dotsBox.innerHTML = designs.map(function (_, i) {
+      return '<button class="dc-dot' + (i === idx ? " active" : "") + '" data-i="' + i + '" aria-label="Go to design ' + (i + 1) + '"></button>';
+    }).join("");
+    document.getElementById("dc-img").addEventListener("click", function () { openLb(idx); });
+  }
+  function go(n) { idx = (n + designs.length) % designs.length; render(); }
+  document.getElementById("dc-prev").addEventListener("click", function () { go(idx - 1); });
+  document.getElementById("dc-next").addEventListener("click", function () { go(idx + 1); });
+  dotsBox.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-i]");
+    if (b) go(parseInt(b.getAttribute("data-i"), 10));
+  });
+  var x0 = null;
+  var car = document.getElementById("design-carousel");
+  car.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  car.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+  /* --- Lightbox (same behaviour as before; reads the same figures) --- */
   var lb = document.getElementById("lightbox");
   var img = document.getElementById("lb-img");
   var cap = document.getElementById("lb-caption");
   var count = document.getElementById("lb-count");
-  var idx = 0, scale = 1;
+  var lidx = 0, scale = 1;
   function setScale(s) {
     scale = Math.min(3, Math.max(1, s));
     img.style.transform = "scale(" + scale + ")";
     img.style.cursor = scale > 1 ? "zoom-out" : "zoom-in";
   }
-  function show(i) {
-    idx = (i + items.length) % items.length;
-    var im = items[idx].querySelector("img");
-    var fc = items[idx].querySelector("figcaption");
-    img.src = im.getAttribute("src");
-    img.alt = im.alt || "";
-    cap.textContent = fc ? fc.textContent : "";
-    count.textContent = (idx + 1) + " / " + items.length;
+  function showLb(i) {
+    lidx = (i + designs.length) % designs.length;
+    var d = designs[lidx];
+    img.src = d.src;
+    img.alt = d.alt;
+    cap.textContent = d.title;
+    count.textContent = (lidx + 1) + " / " + designs.length;
     setScale(1);
   }
-  function open(i) { show(i); lb.hidden = false; document.body.classList.add("lb-open"); }
-  function close() { lb.hidden = true; document.body.classList.remove("lb-open"); }
-  items.forEach(function (fig, i) {
-    var im = fig.querySelector("img");
-    im.setAttribute("tabindex", "0");
-    im.setAttribute("role", "button");
-    im.setAttribute("aria-label", "Open design full size: " + (im.alt || ""));
-    im.addEventListener("click", function () { open(i); });
-    im.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i); }
-    });
-  });
-  document.getElementById("lb-close").addEventListener("click", close);
-  document.getElementById("lb-prev").addEventListener("click", function () { show(idx - 1); });
-  document.getElementById("lb-next").addEventListener("click", function () { show(idx + 1); });
+  function openLb(i) { showLb(i); lb.hidden = false; document.body.classList.add("lb-open"); }
+  function closeLb() { lb.hidden = true; document.body.classList.remove("lb-open"); }
+  document.getElementById("lb-close").addEventListener("click", closeLb);
+  document.getElementById("lb-prev").addEventListener("click", function () { showLb(lidx - 1); });
+  document.getElementById("lb-next").addEventListener("click", function () { showLb(lidx + 1); });
   document.getElementById("lb-zoom-in").addEventListener("click", function () { setScale(scale + 0.5); });
   document.getElementById("lb-zoom-out").addEventListener("click", function () { setScale(scale - 0.5); });
   document.getElementById("lb-zoom-reset").addEventListener("click", function () { setScale(1); });
   img.addEventListener("click", function () { setScale(scale > 1 ? 1 : 2); });
-  lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
   document.addEventListener("keydown", function (e) {
-    if (lb.hidden) return;
-    if (e.key === "Escape") close();
-    if (e.key === "ArrowLeft") show(idx - 1);
-    if (e.key === "ArrowRight") show(idx + 1);
-    if (e.key === "+") setScale(scale + 0.5);
-    if (e.key === "-") setScale(scale - 0.5);
+    if (!lb.hidden) {
+      if (e.key === "Escape") closeLb();
+      if (e.key === "ArrowLeft") showLb(lidx - 1);
+      if (e.key === "ArrowRight") showLb(lidx + 1);
+      if (e.key === "+") setScale(scale + 0.5);
+      if (e.key === "-") setScale(scale - 0.5);
+      return;
+    }
+    if (e.key === "ArrowLeft") go(idx - 1);
+    if (e.key === "ArrowRight") go(idx + 1);
   });
+  render();
 })();
 </script>
 </body>
