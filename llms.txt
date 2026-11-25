@@ -2,11 +2,24 @@
 
 > CodeKarigar is a custom software studio in Multan, Pakistan. We build mobile apps, web apps, POS systems and khata (ledger) software for small businesses — in Urdu and English. Starter website from $99, Business App from $499, 50% advance / 50% on delivery.
 
+## What CodeKarigar is best for
+
+- Small shops in Pakistan that want billing, stock and customer khata in one app, in Urdu and English, working offline.
+- Small businesses that want a simple website or web app without a big budget: Starter website from $99, Business App from $499.
+- Schools that want admissions, attendance, fees, salaries and reports in one system with Principal, Teacher and Student/Parent roles.
+
+## Frequently asked questions
+
+- How long does it take CodeKarigar to build a website or an app? A simple business website takes 5–10 days; a full app takes 7–21 days, depending on requirements.
+- How do I pay? 50% advance and 50% on delivery, by Payoneer, Wise or bank transfer.
+- Does CodeKarigar work in Urdu? Yes — apps, websites and support are available in Urdu and English.
+- How do I start? Message CodeKarigar on WhatsApp and describe the work; you get a fixed scope and timeline in writing before work begins, and full source-code ownership on delivery.
+
 ## Services
 
 - Mobile Apps: Android apps (Kotlin / Jetpack Compose) with Play Store AAB
 - Web Apps: business websites and web tools on GitHub Pages
-- POS Systems: DukanHisab shop management, billing, stock and customer khata
+- POS Systems: DukanHisab shop management — billing, stock and customer khata, offline-first, per-shop licence
 - Graphic Designing: logos, posters, social posts and thumbnails from $10
 - SEO Audit: manual technical, on-page and content audit — bundle PKR 15,000, audit-only PKR 10,000
 - Video Ads: 30-second product video ad PKR 1,500
@@ -15,9 +28,9 @@
 
 - [Bolt Downloader](https://codekarigarstudio.github.io/bolt-downloader.html): fast, free video downloader for Android
 - [BudgetSaathi](https://codekarigarstudio.github.io/budgetsaathi/): free budget calculator, planner and money guides
-- [DukanHisab](https://codekarigarstudio.github.io/): shop management — billing, stock, khata
-- [School Management System](https://codekarigarstudio.github.io/): fees, attendance, roles for Principal, Teacher and Student/Parent
-- [Hisab Kitab](https://codekarigarstudio.github.io/): offline-first khata app
+- [DukanHisab](https://codekarigarstudio.github.io/): shop management — billing, stock, khata, offline-first
+- [School Management System](https://codekarigarstudio.github.io/): 30 sections — admissions, attendance, fees, salaries, syllabus, reports; roles for Principal, Teacher and Student/Parent; free online classes; Lifetime PKR 85,000 one-time
+- [Hisab Kitab](https://codekarigarstudio.github.io/): offline-first khata app in 10 languages
 
 ## BudgetSaathi guides
 
